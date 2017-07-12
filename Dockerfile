@@ -1,17 +1,16 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
 ENV BUILD_SDK_VERSION 26.0.0
 ENV SDK_TOOLS_FILE_NAME sdk-tools-linux-3859397.zip
 ENV SDK_TOOLS_URL https://dl.google.com/android/repository/${SDK_TOOLS_FILE_NAME}
 ENV ANDROID_HOME /opt/android-sdk-linux
-ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/build-tools/${BUILD_SDK_VERSION}
+ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/build-tools
 
-RUN apk update && apk add \
+RUN apt-get update && apt-get install -y \
     git \
     wget \
-    ca-certificates \
-    openjdk8 \
-    bash
+    unzip \
+    openjdk-8-jdk
 
 RUN wget -q ${SDK_TOOLS_URL} -P ${ANDROID_HOME} && \
     unzip -oq ${ANDROID_HOME}/${SDK_TOOLS_FILE_NAME} -d ${ANDROID_HOME}
