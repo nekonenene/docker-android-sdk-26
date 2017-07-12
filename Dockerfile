@@ -7,6 +7,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin
 
 RUN apt-get update && apt-get install -y \
     git \
+    curl \
     wget \
     unzip \
     openjdk-8-jdk
