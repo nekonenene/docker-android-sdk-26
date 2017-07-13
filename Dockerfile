@@ -1,7 +1,5 @@
 FROM ubuntu:latest
 
-ENV SDK_TOOLS_FILE_NAME sdk-tools-linux-3859397.zip
-ENV SDK_TOOLS_URL https://dl.google.com/android/repository/${SDK_TOOLS_FILE_NAME}
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin
 
@@ -11,9 +9,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     unzip \
     openjdk-8-jdk
-
-RUN wget -q ${SDK_TOOLS_URL} -P ${ANDROID_HOME} && \
-    unzip -oq ${ANDROID_HOME}/${SDK_TOOLS_FILE_NAME} -d ${ANDROID_HOME}
 
 # accept SDK licences
 RUN mkdir -p ${ANDROID_HOME}/licenses
